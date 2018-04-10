@@ -12,7 +12,12 @@
 		0467F91E207CC0E600870742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0467F91C207CC0E600870742 /* Main.storyboard */; };
 		0467F920207CC0E600870742 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0467F91F207CC0E600870742 /* Assets.xcassets */; };
 		0467F923207CC0E600870742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0467F921207CC0E600870742 /* LaunchScreen.storyboard */; };
-		0467F932207CC3A600870742 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F931207CC3A600870742 /* MainViewController.swift */; };
+		0467F935207CC69600870742 /* PictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F934207CC69600870742 /* PictureTableViewCell.swift */; };
+		0467F937207CC6BA00870742 /* PicturesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F936207CC6BA00870742 /* PicturesListViewController.swift */; };
+		0467F939207CC74000870742 /* Picture+DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F938207CC74000870742 /* Picture+DataClass.swift */; };
+		0467F93B207CC83C00870742 /* Picture+DataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93A207CC83C00870742 /* Picture+DataProperties.swift */; };
+		0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93D207CC91E00870742 /* ApiResponsable.swift */; };
+		0467F940207CC93100870742 /* ApiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93F207CC93100870742 /* ApiConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +28,12 @@
 		0467F91F207CC0E600870742 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0467F922207CC0E600870742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0467F924207CC0E600870742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0467F931207CC3A600870742 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0467F934207CC69600870742 /* PictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTableViewCell.swift; sourceTree = "<group>"; };
+		0467F936207CC6BA00870742 /* PicturesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesListViewController.swift; sourceTree = "<group>"; };
+		0467F938207CC74000870742 /* Picture+DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Picture+DataClass.swift"; sourceTree = "<group>"; };
+		0467F93A207CC83C00870742 /* Picture+DataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Picture+DataProperties.swift"; sourceTree = "<group>"; };
+		0467F93D207CC91E00870742 /* ApiResponsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponsable.swift; sourceTree = "<group>"; };
+		0467F93F207CC93100870742 /* ApiConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,7 @@
 		0467F92C207CC25E00870742 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				0467F93C207CC90C00870742 /* API */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -88,6 +99,8 @@
 		0467F92D207CC28E00870742 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0467F938207CC74000870742 /* Picture+DataClass.swift */,
+				0467F93A207CC83C00870742 /* Picture+DataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,7 +108,8 @@
 		0467F92E207CC2AA00870742 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0467F931207CC3A600870742 /* MainViewController.swift */,
+				0467F933207CC61B00870742 /* Cells */,
+				0467F936207CC6BA00870742 /* PicturesListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -106,6 +120,23 @@
 				0467F91C207CC0E600870742 /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0467F933207CC61B00870742 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0467F934207CC69600870742 /* PictureTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0467F93C207CC90C00870742 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0467F93D207CC91E00870742 /* ApiResponsable.swift */,
+				0467F93F207CC93100870742 /* ApiConnection.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +211,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0467F932207CC3A600870742 /* MainViewController.swift in Sources */,
+				0467F940207CC93100870742 /* ApiConnection.swift in Sources */,
+				0467F935207CC69600870742 /* PictureTableViewCell.swift in Sources */,
+				0467F939207CC74000870742 /* Picture+DataClass.swift in Sources */,
+				0467F937207CC6BA00870742 /* PicturesListViewController.swift in Sources */,
+				0467F93B207CC83C00870742 /* Picture+DataProperties.swift in Sources */,
+				0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */,
 				0467F91B207CC0E600870742 /* ViewController.swift in Sources */,
 				0467F919207CC0E600870742 /* AppDelegate.swift in Sources */,
 			);

@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>api_routing</key>
+	<dict>
+		<key>uri_gallery</key>
+		<string>/gallery</string>
+		<key>url</key>
+		<string>https://api.imgur.com/</string>
+		<key>api_version</key>
+		<string>3</string>
+	</dict>
+	<key>access_token</key>
+	<string>c94f2d4a2c225b3e4755ed733298f44076ba11df</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -12,12 +12,23 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     
     //MARK: - GLOBAL VARIABLES DECLARATION
     //--------UI Variables--------
+    @IBOutlet var pictures_tableview: UITableView!
+    
     //textfields
     //labels
     //--------Business logic variables--------
-    
+    var pictures : Array<Picture> = []
+    var index_path_seleccionado : IndexPath? = nil
+    //sincronización
+    var infracciones_por_sincronizar : Array<INFRACCION> = []//variable declarada para incluir infracciones pendientes de sincronizar
+    var index_infraccion_en_sincronizacion = 0//establece el index de la infracción que se está sincronizando
+    var cantidad_infracciones_sincronizadas = 0
     //--------Other variables--------
-    
+    //views
+    var overlay_view = UIView()
+    var alert_view = UIView()
+    //Api
+    let api_connection = ApiConnection.shared
     
     //MARK: - VIEW BEHAVIOR METHODS
     override func viewDidLoad() {

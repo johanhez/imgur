@@ -100,7 +100,7 @@ extension UIViewController {
         }
         
         let alert_view = UIView(frame:CGRect(x: 0, y: 0, width: screen_size.width, height: screen_size.height))
-        alert_view.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
+        alert_view.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
         //Message view
         let alert_content_view = UIView(frame:
             CGRect(x: (alert_view.frame.size.width / 2) - ((alert_view.frame.size.width * 0.84) / 2), y: (screen_size.height / 2) - (alert_content_view_height / 2) - height_to_decrease, width: alert_content_view_width, height: alert_content_view_height)
@@ -158,10 +158,11 @@ extension UIViewController {
     }
     
     //MARK: LOOK
-    func setHeaderStyle(navigation_bar : UINavigationBar, titulo_personalizado : Bool = false){
+    func setHeaderStyle(navigation_bar : UINavigationBar, title_for_vc : Bool = false){
         //background
+        navigation_bar.setBackgroundImage(#imageLiteral(resourceName: "background"), for: UIBarPosition.top, barMetrics: UIBarMetrics.default)
         
-        if titulo_personalizado == false {
+        if title_for_vc == false {
             //logo for title
             let imageView = UIImageView(image: #imageLiteral(resourceName: "header_logo"))
             imageView.contentMode = UIViewContentMode.scaleAspectFit // set imageview's content mode

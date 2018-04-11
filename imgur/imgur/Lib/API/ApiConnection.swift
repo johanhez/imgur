@@ -79,11 +79,9 @@ final class ApiConnection: NSObject
         let plist_api_routing_name : String = aditional_parameters["plist_api_routing_name"]!
         let function_name_to_response : String = aditional_parameters["function_name_to_response"]!
         self.session_data_tasks_list[plist_api_routing_name] = URLSessionDataTask()
-        //url definition
-        var api_url : String = self.api_routing["url"] as! String
-        let api_version : String = self.api_routing["api_version"] as! String
-        api_url += api_version
-        api_url += self.api_routing[plist_api_routing_name] as! String
+        
+        var api_url = aditional_parameters["api_url"]!
+        
         //including url parameters
         if url_parameters.count > 0 {
             api_url += "?"
@@ -161,7 +159,7 @@ final class ApiConnection: NSObject
                 case 404:
                     //Not found
                     response_array["error"] = true as AnyObject
-                    response_array["error_message"] = "Not found information" as NSString
+                    response_array["error_message"] = "Information not found" as NSString
                     break
                 default:
                     //Error accessing data

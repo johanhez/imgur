@@ -10,6 +10,11 @@ import UIKit
 
 class PictureTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var title_label: UILabel!
+    @IBOutlet weak var main_picture_imageview: UIImageView!
+    @IBOutlet weak var date_of_post_label: UILabel!
+    @IBOutlet weak var number_of_pics_label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

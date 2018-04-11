@@ -50,16 +50,30 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     
     //MARK: - TABLEVIEW METHODS
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell_to_return = UITableViewCell()
-        return cell_to_return
+        let  cell = self.pictures_tableview.dequeueReusableCell(withIdentifier: "picture_cell") as! PictureTableViewCell
+        if indexPath.row % 2 == 0 {
+            cell.title_label.text = "Can’t describe How happy i am"
+            cell.main_picture_imageview.image = #imageLiteral(resourceName: "test_happy")
+            cell.date_of_post_label.text = "04 Dec 2018"
+            cell.number_of_pics_label.text = "4"
+        }
+        else {
+            cell.title_label.text = "I don’t know why people are so angry about this. I also acknowledge that I am going to get a lot of criticism for posting this."
+            cell.main_picture_imageview.image = #imageLiteral(resourceName: "test_fb")
+            cell.date_of_post_label.text = "021 Jan 2018"
+            cell.number_of_pics_label.text = "3"
+        }
+        
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

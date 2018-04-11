@@ -18,6 +18,7 @@
 		0467F93B207CC83C00870742 /* Picture+DataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93A207CC83C00870742 /* Picture+DataProperties.swift */; };
 		0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93D207CC91E00870742 /* ApiResponsable.swift */; };
 		0467F940207CC93100870742 /* ApiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93F207CC93100870742 /* ApiConnection.swift */; };
+		048D10F1207DD2F9007AF53C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D10F0207DD2F9007AF53C /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0467F93A207CC83C00870742 /* Picture+DataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Picture+DataProperties.swift"; sourceTree = "<group>"; };
 		0467F93D207CC91E00870742 /* ApiResponsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponsable.swift; sourceTree = "<group>"; };
 		0467F93F207CC93100870742 /* ApiConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnection.swift; sourceTree = "<group>"; };
+		048D10F0207DD2F9007AF53C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		0467F92C207CC25E00870742 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				048D10EF207DD2D1007AF53C /* Extensions */,
 				0467F93C207CC90C00870742 /* API */,
 			);
 			path = Lib;
@@ -139,6 +142,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		048D10EF207DD2D1007AF53C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				048D10F0207DD2F9007AF53C /* UIViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,7 +177,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Johan Hernandez";
 				TargetAttributes = {
 					0467F914207CC0E500870742 = {
@@ -213,6 +224,7 @@
 			files = (
 				0467F940207CC93100870742 /* ApiConnection.swift in Sources */,
 				0467F935207CC69600870742 /* PictureTableViewCell.swift in Sources */,
+				048D10F1207DD2F9007AF53C /* UIViewController.swift in Sources */,
 				0467F939207CC74000870742 /* Picture+DataClass.swift in Sources */,
 				0467F937207CC6BA00870742 /* PicturesListViewController.swift in Sources */,
 				0467F93B207CC83C00870742 /* Picture+DataProperties.swift in Sources */,
@@ -258,6 +270,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -265,6 +278,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -315,6 +329,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -322,6 +337,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

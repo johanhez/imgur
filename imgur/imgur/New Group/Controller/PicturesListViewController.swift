@@ -8,33 +8,44 @@
 
 import UIKit
 
-class PicturesListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class PicturesListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,ApiResponsable {
     
     //MARK: - GLOBAL VARIABLES DECLARATION
     //--------UI Variables--------
     @IBOutlet var pictures_tableview: UITableView!
-    
     //textfields
-    //labels
+    @IBOutlet weak var search_textfield: UITextField!
+    //buttons
+    @IBOutlet weak var search_button: UIButton!
     //--------Business logic variables--------
     var pictures : Array<Picture> = []
-    var index_path_seleccionado : IndexPath? = nil
-    //sincronización
-    var infracciones_por_sincronizar : Array<INFRACCION> = []//variable declarada para incluir infracciones pendientes de sincronizar
-    var index_infraccion_en_sincronizacion = 0//establece el index de la infracción que se está sincronizando
-    var cantidad_infracciones_sincronizadas = 0
-    //--------Other variables--------
+    //--------General variables--------
     //views
-    var overlay_view = UIView()
-    var alert_view = UIView()
+    var overlay_view = UIView()//Present spinner
+    var alert_view = UIView()//Present messages for user
     //Api
-    let api_connection = ApiConnection.shared
+    let api_connection = ApiConnection.shared//singleton object
     
     //MARK: - VIEW BEHAVIOR METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        //API
+        self.api_connection.setApiResponsable(api_responsable: self)
+        //STYLE
+        //navigation bar
+        self.setHeaderStyle(navigation_bar:self.navigationController!.navigationBar, titulo_personalizado: false)
+        //tableview
+        let background_view = UIView(frame: CGRect.zero)
+        self.pictures_tableview.tableFooterView = background_view
+        self.pictures_tableview.backgroundColor = UIColor.clear
+        self.view.backgroundColor = UIColor.white
+        //Helper views
+        self.overlay_view = self.includeOverlayView(controller: self)
+        self.alert_view = self.includeAlertView(controller: self, withLongText: true)
+        //tap event to hide keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PicturesListViewController.hideKeyboard))
+        self.pictures_tableview.addGestureRecognizer(tap)
         
-        // Do any additional setup after loading the view.
     }
     
     //MARK: - TABLEVIEW METHODS
@@ -57,17 +68,58 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     
     
     //MARK: - UI ACTION METHODS
+    @IBAction func searchButtonAction(_ sender: Any) {
+        
+    }
     
+    //MARK: - CUSTOM METHODS
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
     
-    //MARK: - NAVIGATION METHODS
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //acceptAlert is called when the user press the button "Accept" in the alert view
+    @objc func acceptAlert() {
+        self.showOrHideViewElement(show_action: "hide", element: self.alert_view)
     }
     
     
-    //MARK: - CUSTOM METHODS
+    //MARK: - API CONNECTION METHODS
     
+    //sendApiRequestFinished is called after the app receive a response from the server
+    func sendApiRequestFinished(response_array: Dictionary<String, AnyObject>, function_name_to_response: String) {
+        print("sendApiRequestFinished")
+        if response_array["error"] != nil {
+            var mensaje_error = "There was an error obtaining the information. Please try again."
+            if let error_message = response_array["error_message"] as? String {
+                mensaje_error = error_message
+            }
+            self.showHideOverview(show_action: "hide", overlay_view: self.overlay_view)
+            self.showAlert(alert_view: self.alert_view, alert_message: mensaje_error)
+        }
+        else {
+            switch function_name_to_response {
+            case "interpretResponseSearchPictures":
+                self.interpretResponseSearchPictures(response_array: response_array)
+                break
+            default:
+                //
+                break
+            }
+        }
+    }
+    
+    //interpretResponseSearchPictures is called after the app receive a response from the server
+    //and the response is related to search pictures
+    func interpretResponseSearchPictures(response_array : Dictionary<String, AnyObject>){
+        print("interpretarRespuestaBuscarEstablecimientos")
+        self.showHideOverview(show_action: "hide", overlay_view: self.overlay_view)
+        if  let response_code = response_array["response_code"] as? Int,
+            var _ = response_array["response"]  as? Dictionary<String, Any>,
+            response_code == 200
+        {
+            
+        }
+    }
     
     //MARK: - SCAPE METHODS
     override func didReceiveMemoryWarning() {

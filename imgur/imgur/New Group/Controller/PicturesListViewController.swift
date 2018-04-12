@@ -27,6 +27,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     var alert_view = UIView()//Present messages for user
     //Api
     let api_connection = ApiConnection.shared//singleton object
+    var cellHeightDictionary: NSMutableDictionary = NSMutableDictionary()
     
     //MARK: - VIEW BEHAVIOR METHODS
     override func viewDidLoad() {
@@ -41,6 +42,10 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         let background_view = UIView(frame: CGRect.zero)
         self.pictures_tableview.tableFooterView = background_view
         self.pictures_tableview.backgroundColor = UIColor.clear
+        
+        self.pictures_tableview.rowHeight = UITableViewAutomaticDimension
+        self.pictures_tableview.estimatedRowHeight = 488
+        cellHeightDictionary = NSMutableDictionary()
         
         //Helper views
         self.overlay_view = self.includeOverlayView(controller: self)
@@ -145,6 +150,17 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.cellHeightDictionary.setObject(cell.frame.size.height, forKey: indexPath as NSCopying)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if cellHeightDictionary.object(forKey: indexPath) != nil {
+            let height = cellHeightDictionary.object(forKey: indexPath) as! CGFloat
+            return height
+        }
+        return UITableViewAutomaticDimension
+    }
     
     //MARK: - UI ACTION METHODS
     //searchButtonAction is executed after pressing the search button

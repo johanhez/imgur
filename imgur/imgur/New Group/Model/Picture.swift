@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class Picture:NSObject {
     
@@ -14,10 +15,11 @@ public class Picture:NSObject {
     public var post_date: NSDate?
     public var number_images: Int16?
     public var image_url: String?
+    public var post_picture: UIImage?
     
     
     override init(){
-        //super.init()
+        super.init()
     }
     
 }

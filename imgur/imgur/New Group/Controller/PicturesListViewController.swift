@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PicturesListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,ApiResponsable {
+class PicturesListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,ApiResponsable, UITextFieldDelegate {
     
     //MARK: - GLOBAL VARIABLES DECLARATION
     //--------UI Variables--------
@@ -62,66 +62,69 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = self.pictures_tableview.dequeueReusableCell(withIdentifier: "picture_cell") as! PictureTableViewCell
+        //get picture object to render
         let picture : Picture = self.pictures[indexPath.row]
-        if let title = picture.title {
-            cell.title_label.text = title
+        
+        //get title for cell
+        var cell_title_label = ""
+        if picture.title != "" {
+            cell_title_label = picture.title!
         }
-        var date_of_post = ""
+        cell.title_label.text = cell_title_label
+        
+        //get date of post for cell
+        var cell_date_of_post_label = ""
         if picture.post_date != nil {
             let dayTimePeriodFormatter = DateFormatter()
             dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
-            date_of_post = dayTimePeriodFormatter.string(from: picture.post_date! as Date)
+            cell_date_of_post_label = dayTimePeriodFormatter.string(from: picture.post_date! as Date)
         }
-        cell.date_of_post_label.text = date_of_post
-        if let number_images = picture.number_images {
-            cell.number_of_pics_label.text = String(number_images)
-        }
+        cell.date_of_post_label.text = cell_date_of_post_label
         
-        if  let image_url = picture.image_url,
-            let url = URL(string: image_url) {
-            //imageView.contentMode = .scaleAspectFit
-            
-            cell.main_picture_imageview.downloadedFrom(link: image_url)
-            
-            /*
-            //downloading image
-            print("Download Started")
-            getDataFromUrl(url: url) { data, response, error in
-                guard let data = data, error == nil else { return }
-                print(response?.suggestedFilename ?? url.lastPathComponent)
-                print("Download Finished")
-                DispatchQueue.main.async() {
-                    cell.main_picture_imageview.image = UIImage(data: data)
+        //get number of images
+        var cell_number_of_pics_label = "1"
+        if let number_images = picture.number_images {
+            cell_number_of_pics_label = String(number_images)
+        }
+        cell.number_of_pics_label.text = cell_number_of_pics_label
+        
+        //get image
+        cell.main_picture_imageview.image = #imageLiteral(resourceName: "loading_bg")
+        //If picture was already downloaded, the image is obtaied from the object to avoid downloading again
+        if picture.post_picture != nil{
+            //The picture has not been downloaded
+            print("Picture was downloaded previously for row \(indexPath.row)")
+            cell.main_picture_imageview.image = picture.post_picture!
+        }
+        else{
+            //The picture has not been downloaded
+            let current_index_path = indexPath//required to know which picture is being downloaded
+            if  let image_url = picture.image_url,
+                let url = URL(string: image_url) {
+                
+                //cell.main_picture_imageview.downloadedFrom(link: image_url)
+                
+                //downloading image
+                print("Download Started for row \(indexPath.row)")
+                getDataFromUrl(url: url) { data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error downloading pic at row \(indexPath.row)")
+                        return
+                    }
+                    print()
+                    print("Download Finished for row \(indexPath.row). Picture name: \(response?.suggestedFilename ?? url.lastPathComponent)")
+                    DispatchQueue.main.async() {
+                        picture.post_picture = UIImage(data: data)
+                        if let cell_to_update = self.pictures_tableview.cellForRow(at: current_index_path) as? PictureTableViewCell {
+                            cell_to_update.main_picture_imageview.image = UIImage(data: data)
+                        }
+                        //self.pictures[indexPath.row] = picture
+                        //print("reloading cell at row \(indexPath.row)")
+                        //self.pictures_tableview.reloadRows(at: [indexPath], with: .top)
+                    }
                 }
             }
-             */
         }
-        
-        /*
-        switch indexPath.row {
-        case 0,3,6,9:
-            cell.title_label.text = "Can’t describe How happy i am"
-            cell.main_picture_imageview.image = #imageLiteral(resourceName: "test_happy")
-            cell.date_of_post_label.text = "04 Dec 2018"
-            cell.number_of_pics_label.text = "4"
-            break
-        case 1,4,7:
-            cell.title_label.text = "I don’t know why people are so angry about this. I also acknowledge that I am going to get a lot of criticism for posting this."
-            cell.main_picture_imageview.image = #imageLiteral(resourceName: "test_fb")
-            cell.date_of_post_label.text = "01 Apr 2018"
-            cell.number_of_pics_label.text = "3"
-            break
-        case 2,5,8:
-            cell.title_label.text = "Coachella sued for preventing acts from playing within 1,300 miles for five months "
-            cell.main_picture_imageview.image = #imageLiteral(resourceName: "test_twitt")
-            cell.date_of_post_label.text = "02 Jan 2018"
-            cell.number_of_pics_label.text = "3"
-            break
-        default:
-            //
-            break
-        }
-         */
         
         cell.backgroundColor = UIColor.clear
         return cell
@@ -143,6 +146,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         view.endEditing(true)
     }
     
+    //validateSearchRequest verification for the keyword to be valid
     func validateSearchRequest(){
         let text_to_search = self.search_textfield.text
         if text_to_search!.count < 3 {
@@ -195,6 +199,16 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             }.resume()
     }
     
+    //MARK: - DELEGATES
+    //Textfield delegates
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()  //if desired
+        print("enter")
+        self.validateSearchRequest()
+        return true
+    }
+    
+    
     //MARK: - API CONNECTION METHODS
     
     //sendApiRequestFinished is called after the app receive a response from the server
@@ -230,12 +244,10 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             let response = response_array["response"]  as? Dictionary<String, Any>,
             response_code == 200
         {
-            print("response: \(response["data"])")
-            
+            //print("response: \(response["data"])")
             if let json_pictures = response["data"] as? Array<Dictionary<String, AnyObject>> {
                 print("Amount of pictures found: \(json_pictures.count)")
-                for (index,json_picture) in json_pictures.enumerated() {
-                    print("loading json picture \(index)")
+                for json_picture in json_pictures {
                     //try to get first image from list or main image from post
                     var image_url : String? = nil
                     var number_of_pictures : Int16 = 1
@@ -251,7 +263,6 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
                         image_url = link
                     }
                     if image_url != nil {
-                        print("its a valid picture 1")
                         let picture = Picture()
                         if let title = json_picture["title"] as? String {
                             picture.title = title
@@ -279,4 +290,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
 }
+
+
+
 

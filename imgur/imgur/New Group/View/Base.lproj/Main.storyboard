@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZ4-9A-NWD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="67"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="97"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search top images in IMGUR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gqJ-im-J46" userLabel="search_textfield">
                                         <rect key="frame" x="8" y="18" width="321" height="30"/>
@@ -62,18 +62,41 @@
                                             <action selector="searchButtonAction:" destination="T0V-p3-uQk" eventType="touchUpInside" id="FdE-iD-O68"/>
                                         </connections>
                                     </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8i9-t9-8XP">
+                                        <rect key="frame" x="316" y="56" width="51" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="49" id="a2a-23-abW"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="switchFilteringResults:" destination="T0V-p3-uQk" eventType="valueChanged" id="QfM-pN-QAH"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display results where the sum of “points”, “score” and “topic_id” adds up to an even number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61n-FB-gTs">
+                                        <rect key="frame" x="8" y="56" width="300" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="Hmw-oX-aW0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="67" id="6XV-IP-XDA"/>
                                     <constraint firstItem="zke-MJ-BLT" firstAttribute="leading" secondItem="gqJ-im-J46" secondAttribute="trailing" constant="8" id="ER1-vA-MCg"/>
+                                    <constraint firstItem="8i9-t9-8XP" firstAttribute="centerY" secondItem="61n-FB-gTs" secondAttribute="centerY" id="KKg-PL-6E9"/>
+                                    <constraint firstItem="8i9-t9-8XP" firstAttribute="leading" secondItem="61n-FB-gTs" secondAttribute="trailing" constant="8" id="Kxh-ll-TcY"/>
                                     <constraint firstAttribute="trailing" secondItem="zke-MJ-BLT" secondAttribute="trailing" constant="8" id="PR5-wH-gco"/>
+                                    <constraint firstItem="61n-FB-gTs" firstAttribute="leading" secondItem="JZ4-9A-NWD" secondAttribute="leading" constant="8" id="VWv-lu-AUw"/>
                                     <constraint firstItem="zke-MJ-BLT" firstAttribute="top" secondItem="JZ4-9A-NWD" secondAttribute="top" constant="18" id="fA6-FZ-vPh"/>
+                                    <constraint firstItem="61n-FB-gTs" firstAttribute="top" secondItem="gqJ-im-J46" secondAttribute="bottom" constant="8" id="fbl-jr-pdO"/>
+                                    <constraint firstAttribute="bottom" secondItem="61n-FB-gTs" secondAttribute="bottom" constant="10" id="gE6-1q-mDS"/>
+                                    <constraint firstAttribute="trailing" secondItem="8i9-t9-8XP" secondAttribute="trailing" constant="10" id="rOb-EU-E9y"/>
                                     <constraint firstItem="gqJ-im-J46" firstAttribute="top" secondItem="JZ4-9A-NWD" secondAttribute="top" constant="18" id="uKw-WF-nMx"/>
                                     <constraint firstItem="gqJ-im-J46" firstAttribute="leading" secondItem="JZ4-9A-NWD" secondAttribute="leading" constant="8" id="zlr-4v-pcd"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XO5-4j-Mj9">
-                                <rect key="frame" x="0.0" y="131" width="375" height="536"/>
+                                <rect key="frame" x="0.0" y="161" width="375" height="506"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="picture_cell" rowHeight="488" id="kjR-v6-16O" customClass="PictureTableViewCell" customModule="imgur" customModuleProvider="target">
@@ -185,15 +208,16 @@
                             <constraint firstItem="F8e-Rr-t5x" firstAttribute="trailing" secondItem="Qki-If-zod" secondAttribute="trailing" id="Fwb-0D-nDp"/>
                             <constraint firstItem="XO5-4j-Mj9" firstAttribute="bottom" secondItem="Qki-If-zod" secondAttribute="bottom" id="HOP-UW-VEe"/>
                             <constraint firstItem="F8e-Rr-t5x" firstAttribute="top" secondItem="Pme-8b-b3B" secondAttribute="top" id="Vu1-j3-Qkq"/>
-                            <constraint firstItem="XO5-4j-Mj9" firstAttribute="top" secondItem="JZ4-9A-NWD" secondAttribute="bottom" id="a0m-RL-ITl"/>
                             <constraint firstItem="XO5-4j-Mj9" firstAttribute="leading" secondItem="Qki-If-zod" secondAttribute="leading" id="lhs-2r-So4"/>
                             <constraint firstItem="XO5-4j-Mj9" firstAttribute="trailing" secondItem="Qki-If-zod" secondAttribute="trailing" id="mhK-gg-FrN"/>
                             <constraint firstItem="JZ4-9A-NWD" firstAttribute="leading" secondItem="Qki-If-zod" secondAttribute="leading" id="tOs-3s-wfy"/>
+                            <constraint firstItem="XO5-4j-Mj9" firstAttribute="top" secondItem="JZ4-9A-NWD" secondAttribute="bottom" id="uJ3-gM-3Io"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qki-If-zod"/>
                     </view>
                     <navigationItem key="navigationItem" title="IMGUR" id="nU4-ZV-ukr"/>
                     <connections>
+                        <outlet property="even_results_switch" destination="8i9-t9-8XP" id="h8D-xp-8Rk"/>
                         <outlet property="pictures_tableview" destination="XO5-4j-Mj9" id="RY7-6g-22H"/>
                         <outlet property="search_button" destination="zke-MJ-BLT" id="1U8-CR-pHu"/>
                         <outlet property="search_textfield" destination="gqJ-im-J46" id="WdR-dL-hTC"/>

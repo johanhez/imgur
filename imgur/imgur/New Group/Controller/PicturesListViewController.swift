@@ -17,6 +17,9 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     @IBOutlet weak var search_textfield: UITextField!
     //buttons
     @IBOutlet weak var search_button: UIButton!
+    //Switches
+    @IBOutlet weak var even_results_switch: UISwitch!
+    
     //--------Business logic variables--------
     var pictures : Array<Picture> = []
     //--------General variables--------
@@ -53,6 +56,9 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         //tap event to hide keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PicturesListViewController.hideKeyboard))
         self.pictures_tableview.addGestureRecognizer(tap)
+        
+        //turn of filtering toggle
+        self.even_results_switch.setOn(false, animated: false)
         
     }
     
@@ -162,11 +168,20 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         return UITableViewAutomaticDimension
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.hideKeyboard()
+    }
+    
     //MARK: - UI ACTION METHODS
     //searchButtonAction is executed after pressing the search button
     @IBAction func searchButtonAction(_ sender: Any) {
         self.validateSearchRequest()
     }
+    
+    @IBAction func switchFilteringResults(_ sender: Any) {
+        self.validateSearchRequest()
+    }
+    
     
     //MARK: - CUSTOM METHODS
     @objc func hideKeyboard() {
@@ -202,7 +217,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             let api_version : String = self.api_routing["api_version"] as! String
             api_url += api_version
             api_url += self.api_routing[plist_api_routing_name] as! String
-            api_url += "/search/top/"+page_string
+            api_url += "/search/time/week/"+page_string
             
             var aditional_parameters : Dictionary<String, String> = [:]
             aditional_parameters["plist_api_routing_name"] = plist_api_routing_name
@@ -274,7 +289,6 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         {
             //print("response: \(response["data"])")
             if let json_pictures = response["data"] as? Array<Dictionary<String, AnyObject>> {
-                print("Amount of pictures found: \(json_pictures.count)")
                 for json_picture in json_pictures {
                     //try to get first image from list or main image from post
                     var image_url : String? = nil
@@ -300,8 +314,36 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
                             picture.post_date = NSDate(timeIntervalSince1970: datetime)
                         }
                         picture.image_url = image_url
-                        self.pictures.append(picture)
+                        var include_in_list = true
+                        //If toggle is enabled, the app should only display results where the sum of “points”, “score” and “topic_id” adds up to an even number
+                        if self.even_results_switch.isOn == true {
+                            var points : Int = 0
+                            var score : Int = 0
+                            var topic_id : Int = 0
+                            if let json_points = json_picture["points"] as? Int {
+                                points = json_points
+                            }
+                            if let json_score = json_picture["score"] as? Int {
+                                score = json_score
+                            }
+                            if let json_topic_id = json_picture["topic_id"] as? Int {
+                                topic_id = json_topic_id
+                            }
+                            let features_sum = points+score+topic_id
+                            if (features_sum % 2) != 0 {
+                                include_in_list = false
+                            }
+                        }
+                        if include_in_list == true {
+                            self.pictures.append(picture)
+                        }
                     }
+                }
+                if self.pictures.count == 0 {
+                    self.showAlert(alert_view: self.alert_view, alert_message: "There are no results. Please try with a different keyword")
+                }
+                else if self.api_page > 1 && json_pictures.count == 0 {
+                    self.showAlert(alert_view: self.alert_view, alert_message: "Sorry, it looks like there are no more related pictures. But you can try with a different keyword.")
                 }
                 self.pictures_tableview.reloadData()
             }

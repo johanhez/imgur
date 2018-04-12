@@ -21,7 +21,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     var pictures : Array<Picture> = []
     //--------General variables--------
     var api_routing : NSDictionary!
-    var page : Int = 1
+    var api_page : Int = 1
     //views
     var overlay_view = UIView()//Present spinner
     var alert_view = UIView()//Present messages for user
@@ -61,6 +61,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("Render row \(indexPath.row)")
         let  cell = self.pictures_tableview.dequeueReusableCell(withIdentifier: "picture_cell") as! PictureTableViewCell
         //get picture object to render
         let picture : Picture = self.pictures[indexPath.row]
@@ -103,27 +104,17 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             let current_index_path = indexPath//required to know which picture is being downloaded
             if  let image_url = picture.image_url,
                 let url = URL(string: image_url) {
-                
-                //cell.main_picture_imageview.downloadedFrom(link: image_url)
-                
                 //downloading image
-                print("Download Started for row \(indexPath.row)")
                 getDataFromUrl(url: url) { data, response, error in
                     guard let data = data, error == nil else {
-                        print("error downloading pic at row \(indexPath.row)")
                         return
                     }
-                    print()
-                    print("Download Finished for row \(indexPath.row). Picture name: \(response?.suggestedFilename ?? url.lastPathComponent)")
                     DispatchQueue.main.async() {
                         picture.post_picture = UIImage(data: data)
                         if let cell_to_update = self.pictures_tableview.cellForRow(at: current_index_path) as? PictureTableViewCell {
                             cell_to_update.main_picture_imageview.image = UIImage(data: data)
                             cell_to_update.image_activity_indicator.stopAnimating()
                         }
-                        //self.pictures[indexPath.row] = picture
-                        //print("reloading cell at row \(indexPath.row)")
-                        //self.pictures_tableview.reloadRows(at: [indexPath], with: .top)
                     }
                 }
             }
@@ -133,8 +124,25 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    //Include pagination and reload list
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        print("scrollViewWillBeginDecelerating")
+        let scrollview_origin_y = scrollView.contentOffset.y
+        let end_scrolling = scrollview_origin_y + scrollView.frame.size.height
+        if scrollview_origin_y>0 && end_scrolling >= (scrollView.contentSize.height+100){
+            print("load next page")
+            //if the user pull the scroll up
+            self.api_page += 1
+            self.searchPictures()
+        }
+        else if scrollview_origin_y <= -100{
+            print("reload search")
+            //when the user pull the scroll down reload info from the beginning
+            self.api_page = 1
+            self.pictures.removeAll()
+            self.pictures_tableview.reloadData()
+            self.searchPictures()
+        }
     }
     
     
@@ -156,23 +164,24 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             self.showAlert(alert_view: self.alert_view, alert_message: "You must insert at least 3 characterers")
         }
         else{
-            self.searchPictures(text_to_search: text_to_search!)
+            self.pictures.removeAll()
+            self.pictures_tableview.reloadData()
+            self.searchPictures()
         }
     }
     
     //searchPictures starts the request to the API to get pictures with the keyword
-    func searchPictures(text_to_search : String){
+    func searchPictures(){
+        let text_to_search = self.search_textfield.text
         self.hideKeyboard()
         if(self.api_connection.checkNetworkConnection() == true){
-            self.pictures.removeAll()
-            self.pictures_tableview.reloadData()
             self.showHideOverview(show_action: "show", overlay_view: self.overlay_view)
             var url_parameters : Dictionary<String, String> = [:]
             url_parameters["q"] = text_to_search
             
             //url definition
             let plist_api_routing_name = "uri_gallery"
-            let page_string : String = String(self.page)
+            let page_string : String = String(self.api_page)
             var api_url : String = self.api_routing["url"] as! String
             let api_version : String = self.api_routing["api_version"] as! String
             api_url += api_version
@@ -268,7 +277,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
                     if image_url != nil {
                         let picture = Picture()
                         if let title = json_picture["title"] as? String {
-                            picture.title = title
+                            picture.title = title.firstUppercased
                         }
                         picture.number_images = number_of_pictures
                         if let datetime = json_picture["datetime"] as? Double {

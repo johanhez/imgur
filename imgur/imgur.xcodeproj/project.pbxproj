@@ -18,7 +18,7 @@
 		0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93D207CC91E00870742 /* ApiResponsable.swift */; };
 		0467F940207CC93100870742 /* ApiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93F207CC93100870742 /* ApiConnection.swift */; };
 		048D10F1207DD2F9007AF53C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D10F0207DD2F9007AF53C /* UIViewController.swift */; };
-		04E40843207E27750065719D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E40842207E27750065719D /* UIImageView.swift */; };
+		04E40845207EE81E0065719D /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E40844207EE81E0065719D /* StringProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		0467F93D207CC91E00870742 /* ApiResponsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponsable.swift; sourceTree = "<group>"; };
 		0467F93F207CC93100870742 /* ApiConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnection.swift; sourceTree = "<group>"; };
 		048D10F0207DD2F9007AF53C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		04E40842207E27750065719D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		04E40844207EE81E0065719D /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				048D10F0207DD2F9007AF53C /* UIViewController.swift */,
-				04E40842207E27750065719D /* UIImageView.swift */,
+				04E40844207EE81E0065719D /* StringProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -223,9 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0467F940207CC93100870742 /* ApiConnection.swift in Sources */,
-				04E40843207E27750065719D /* UIImageView.swift in Sources */,
 				0467F935207CC69600870742 /* PictureTableViewCell.swift in Sources */,
 				048D10F1207DD2F9007AF53C /* UIViewController.swift in Sources */,
+				04E40845207EE81E0065719D /* StringProtocol.swift in Sources */,
 				0467F939207CC74000870742 /* Picture.swift in Sources */,
 				0467F937207CC6BA00870742 /* PicturesListViewController.swift in Sources */,
 				0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */,

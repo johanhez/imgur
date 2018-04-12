@@ -15,6 +15,9 @@ class PictureTableViewCell: UITableViewCell {
     @IBOutlet weak var date_of_post_label: UILabel!
     @IBOutlet weak var number_of_pics_label: UILabel!
     
+    @IBOutlet weak var image_activity_indicator: UIActivityIndicatorView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

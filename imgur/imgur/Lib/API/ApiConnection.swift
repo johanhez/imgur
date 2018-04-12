@@ -117,7 +117,7 @@ final class ApiConnection: NSObject
                 print("Error in request: \(String(describing: error?.localizedDescription))")
                 let error_code = (error! as NSError).code
                 response_array["error"] = error! as NSError
-                response_array["error_message"] = "It was not possible to get information. Please try again." as NSString
+                response_array["error_message"] = "It wasn't possible to get the pictures at the moment. Please try again." as NSString
                 response_array["response_code"] = error_code as AnyObject
                 if error_code == -1012 {
                     //in ios, -1012 means NSURLErrorUserCancelledAuthentication

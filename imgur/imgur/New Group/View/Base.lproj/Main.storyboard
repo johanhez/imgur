@@ -85,7 +85,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title_label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-7m-E2G" userLabel="title_label">
                                                     <rect key="frame" x="15" y="11" width="345" height="25"/>
-                                                    <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="21"/>
+                                                    <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="21"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -95,6 +95,11 @@
                                                         <constraint firstAttribute="width" secondItem="EfG-Rw-ZVe" secondAttribute="height" multiplier="1:1" id="lDQ-IT-YUB"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-KK-S4u">
+                                                    <rect key="frame" x="169" y="215" width="37" height="37"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.72760595034246578" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </activityIndicatorView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh3-Lb-juM">
                                                     <rect key="frame" x="15" y="429" width="169" height="20"/>
                                                     <constraints>
@@ -147,7 +152,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="EfG-Rw-ZVe" secondAttribute="trailing" id="T6a-th-ymB"/>
                                                 <constraint firstItem="iO3-1d-yGk" firstAttribute="top" secondItem="kh3-Lb-juM" secondAttribute="top" id="TO8-F0-oBI"/>
                                                 <constraint firstItem="Vfa-oV-Ds1" firstAttribute="leading" secondItem="0kI-Gk-POx" secondAttribute="leadingMargin" id="Ucb-0R-g0N"/>
+                                                <constraint firstItem="Yzu-KK-S4u" firstAttribute="centerY" secondItem="EfG-Rw-ZVe" secondAttribute="centerY" id="ZnW-9w-Ww0"/>
                                                 <constraint firstItem="sPq-7m-E2G" firstAttribute="trailing" secondItem="0kI-Gk-POx" secondAttribute="trailingMargin" id="fGy-zQ-uMU"/>
+                                                <constraint firstItem="Yzu-KK-S4u" firstAttribute="centerX" secondItem="EfG-Rw-ZVe" secondAttribute="centerX" id="kHY-z4-MsT"/>
                                                 <constraint firstItem="gtS-Lm-Qbw" firstAttribute="leading" secondItem="Vfa-oV-Ds1" secondAttribute="trailing" constant="7" id="kXc-Yh-wCa"/>
                                                 <constraint firstItem="Vfa-oV-Ds1" firstAttribute="top" secondItem="kh3-Lb-juM" secondAttribute="bottom" id="muT-bj-XK7"/>
                                                 <constraint firstItem="kh3-Lb-juM" firstAttribute="width" secondItem="iO3-1d-yGk" secondAttribute="width" id="p4x-U9-ipc"/>
@@ -156,6 +163,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="date_of_post_label" destination="Vfa-oV-Ds1" id="0K1-Az-7zQ"/>
+                                            <outlet property="image_activity_indicator" destination="Yzu-KK-S4u" id="YbZ-SJ-0Ff"/>
                                             <outlet property="main_picture_imageview" destination="EfG-Rw-ZVe" id="sAs-J8-w2E"/>
                                             <outlet property="number_of_pics_label" destination="gtS-Lm-Qbw" id="VN3-6O-sIZ"/>
                                             <outlet property="title_label" destination="sPq-7m-E2G" id="7S1-Rf-CfI"/>

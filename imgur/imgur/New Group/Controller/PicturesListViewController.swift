@@ -90,11 +90,13 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         
         //get image
         cell.main_picture_imageview.image = #imageLiteral(resourceName: "loading_bg")
+        cell.image_activity_indicator.startAnimating()
         //If picture was already downloaded, the image is obtaied from the object to avoid downloading again
         if picture.post_picture != nil{
             //The picture has not been downloaded
             print("Picture was downloaded previously for row \(indexPath.row)")
             cell.main_picture_imageview.image = picture.post_picture!
+            cell.image_activity_indicator.stopAnimating()
         }
         else{
             //The picture has not been downloaded
@@ -117,6 +119,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
                         picture.post_picture = UIImage(data: data)
                         if let cell_to_update = self.pictures_tableview.cellForRow(at: current_index_path) as? PictureTableViewCell {
                             cell_to_update.main_picture_imageview.image = UIImage(data: data)
+                            cell_to_update.image_activity_indicator.stopAnimating()
                         }
                         //self.pictures[indexPath.row] = picture
                         //print("reloading cell at row \(indexPath.row)")

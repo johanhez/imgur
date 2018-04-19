@@ -28,9 +28,9 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     //views
     var overlay_view = UIView()//Present spinner
     var alert_view = UIView()//Present messages for user
+    var cellHeightDictionary: NSMutableDictionary = NSMutableDictionary()
     //Api
     let api_connection = ApiConnection.shared//singleton object
-    var cellHeightDictionary: NSMutableDictionary = NSMutableDictionary()
     
     
     //MARK: - VIEW BEHAVIOR METHODS
@@ -281,13 +281,11 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     //interpretResponseSearchPictures is called after the app receive a response from the server
     //and the response is related to search pictures
     func interpretResponseSearchPictures(response_array : Dictionary<String, AnyObject>){
-        print("interpretarRespuestaBuscarEstablecimientos")
         self.showHideOverview(show_action: "hide", overlay_view: self.overlay_view)
         if  let response_code = response_array["response_code"] as? Int,
             let response = response_array["response"]  as? Dictionary<String, Any>,
             response_code == 200
         {
-            //print("response: \(response["data"])")
             if let json_pictures = response["data"] as? Array<Dictionary<String, AnyObject>> {
                 self.picture_collection._toggle_filter_is_on = self.even_results_switch.isOn
                 self.picture_collection.createCollectionFromJsonArray(json_pictures: json_pictures)

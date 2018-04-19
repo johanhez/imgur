@@ -66,23 +66,22 @@ public class PictureCollection {
             }
             
             //If toggle is enabled, the app should only display results where the sum of “points”, “score” and “topic_id” adds up to an even number
-            if self._toggle_filter_is_on == true {
-                var points : Int = 0
-                var score : Int = 0
-                var topic_id : Int = 0
-                if let json_points = json_picture["points"] as? Int {
-                    points = json_points
-                }
-                if let json_score = json_picture["score"] as? Int {
-                    score = json_score
-                }
-                if let json_topic_id = json_picture["topic_id"] as? Int {
-                    topic_id = json_topic_id
-                }
-                let features_sum = points+score+topic_id
-                if (features_sum % 2) != 0 {
-                    include_in_list = false
-                }
+            var points : Int = 0
+            var score : Int = 0
+            var topic_id : Int = 0
+            if let json_points = json_picture["points"] as? Int {
+                points = json_points
+            }
+            if let json_score = json_picture["score"] as? Int {
+                score = json_score
+            }
+            if let json_topic_id = json_picture["topic_id"] as? Int {
+                topic_id = json_topic_id
+            }
+            let features_sum = points+score+topic_id
+            picture.filter_sum_value = features_sum
+            if self._toggle_filter_is_on == true && (features_sum % 2) != 0 {
+                include_in_list = false
             }
             
             if include_in_list == true {

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0467F919207CC0E600870742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F918207CC0E600870742 /* AppDelegate.swift */; };
-		0467F91B207CC0E600870742 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F91A207CC0E600870742 /* ViewController.swift */; };
 		0467F91E207CC0E600870742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0467F91C207CC0E600870742 /* Main.storyboard */; };
 		0467F920207CC0E600870742 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0467F91F207CC0E600870742 /* Assets.xcassets */; };
 		0467F923207CC0E600870742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0467F921207CC0E600870742 /* LaunchScreen.storyboard */; };
@@ -21,6 +20,7 @@
 		04DDF2A720888F4100EDCD04 /* PictureCollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF2A620888F4100EDCD04 /* PictureCollectionTest.swift */; };
 		04DDF2A9208893C900EDCD04 /* PictureCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF2A8208893C900EDCD04 /* PictureCollection.swift */; };
 		04DDF2AB2088AB4D00EDCD04 /* ApiConnectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF2AA2088AB4D00EDCD04 /* ApiConnectionTest.swift */; };
+		04DDF2AD2088CDA200EDCD04 /* PictureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF2AC2088CDA200EDCD04 /* PictureTest.swift */; };
 		04E40845207EE81E0065719D /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E40844207EE81E0065719D /* StringProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		0467F915207CC0E600870742 /* imgur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imgur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0467F918207CC0E600870742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0467F91A207CC0E600870742 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0467F91D207CC0E600870742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0467F91F207CC0E600870742 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0467F922207CC0E600870742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		04DDF2A620888F4100EDCD04 /* PictureCollectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionTest.swift; sourceTree = "<group>"; };
 		04DDF2A8208893C900EDCD04 /* PictureCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollection.swift; sourceTree = "<group>"; };
 		04DDF2AA2088AB4D00EDCD04 /* ApiConnectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnectionTest.swift; sourceTree = "<group>"; };
+		04DDF2AC2088CDA200EDCD04 /* PictureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTest.swift; sourceTree = "<group>"; };
 		04E40844207EE81E0065719D /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +98,6 @@
 				0467F92C207CC25E00870742 /* Lib */,
 				0467F92A207CC23800870742 /* MVC */,
 				0467F918207CC0E600870742 /* AppDelegate.swift */,
-				0467F91A207CC0E600870742 /* ViewController.swift */,
 				0467F91F207CC0E600870742 /* Assets.xcassets */,
 				0467F921207CC0E600870742 /* LaunchScreen.storyboard */,
 				0467F924207CC0E600870742 /* Info.plist */,
@@ -192,6 +191,7 @@
 			children = (
 				04DDF2A620888F4100EDCD04 /* PictureCollectionTest.swift */,
 				04DDF2AA2088AB4D00EDCD04 /* ApiConnectionTest.swift */,
+				04DDF2AC2088CDA200EDCD04 /* PictureTest.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -306,7 +306,6 @@
 				0467F939207CC74000870742 /* Picture.swift in Sources */,
 				0467F937207CC6BA00870742 /* PicturesListViewController.swift in Sources */,
 				0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */,
-				0467F91B207CC0E600870742 /* ViewController.swift in Sources */,
 				04DDF2A9208893C900EDCD04 /* PictureCollection.swift in Sources */,
 				0467F919207CC0E600870742 /* AppDelegate.swift in Sources */,
 			);
@@ -317,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DDF2AB2088AB4D00EDCD04 /* ApiConnectionTest.swift in Sources */,
+				04DDF2AD2088CDA200EDCD04 /* PictureTest.swift in Sources */,
 				04DDF2A720888F4100EDCD04 /* PictureCollectionTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,7 @@ public class Picture:NSObject {
     public var number_images: Int16?
     public var image_url: String?
     public var post_picture: UIImage?
+    public var filter_sum_value : Int = 0
     
     
     override init(){

@@ -31,7 +31,7 @@ class ApiConnectionTest: XCTestCase, ApiResponsable  {
         XCTAssertEqual(self.api_connection.checkNetworkConnection(), true)
     }
     
-    //Check that the Webservice answer with no errors and includes the required elements
+    //Check that the Webservice answer with no errors and include the required elements
     func testWebserviceResponse(){
         var url_parameters : Dictionary<String, String> = [:]
         url_parameters["q"] = text_to_search

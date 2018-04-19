@@ -133,7 +133,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date_of_post_label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfa-oV-Ds1">
-                                                    <rect key="frame" x="15" y="449" width="169" height="21"/>
+                                                    <rect key="frame" x="15" y="449" width="287" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="W0i-Xb-6S2"/>
                                                     </constraints>
@@ -150,10 +150,11 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.77647058820000003" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number_of_pics_label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtS-Lm-Qbw">
-                                                    <rect key="frame" x="191" y="449" width="169" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtS-Lm-Qbw">
+                                                    <rect key="frame" x="310" y="449" width="50" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="3SQ-NF-dxY"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Sna-Ut-tAT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -164,6 +165,7 @@
                                                 <constraint firstItem="EfG-Rw-ZVe" firstAttribute="top" secondItem="sPq-7m-E2G" secondAttribute="bottom" constant="10" id="0zK-Zw-XMP"/>
                                                 <constraint firstItem="sPq-7m-E2G" firstAttribute="top" secondItem="0kI-Gk-POx" secondAttribute="topMargin" id="2sj-F8-dbk"/>
                                                 <constraint firstItem="gtS-Lm-Qbw" firstAttribute="top" secondItem="iO3-1d-yGk" secondAttribute="bottom" id="3E2-OF-gXS"/>
+                                                <constraint firstItem="gtS-Lm-Qbw" firstAttribute="leading" secondItem="Vfa-oV-Ds1" secondAttribute="trailing" constant="8" id="49b-G7-zqM"/>
                                                 <constraint firstItem="gtS-Lm-Qbw" firstAttribute="trailing" secondItem="0kI-Gk-POx" secondAttribute="trailingMargin" id="7UI-5U-ID5"/>
                                                 <constraint firstItem="sPq-7m-E2G" firstAttribute="leading" secondItem="0kI-Gk-POx" secondAttribute="leadingMargin" id="BBn-rb-c8D"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Vfa-oV-Ds1" secondAttribute="bottom" constant="7" id="Het-uS-UNV"/>
@@ -178,10 +180,8 @@
                                                 <constraint firstItem="Yzu-KK-S4u" firstAttribute="centerY" secondItem="EfG-Rw-ZVe" secondAttribute="centerY" id="ZnW-9w-Ww0"/>
                                                 <constraint firstItem="sPq-7m-E2G" firstAttribute="trailing" secondItem="0kI-Gk-POx" secondAttribute="trailingMargin" id="fGy-zQ-uMU"/>
                                                 <constraint firstItem="Yzu-KK-S4u" firstAttribute="centerX" secondItem="EfG-Rw-ZVe" secondAttribute="centerX" id="kHY-z4-MsT"/>
-                                                <constraint firstItem="gtS-Lm-Qbw" firstAttribute="leading" secondItem="Vfa-oV-Ds1" secondAttribute="trailing" constant="7" id="kXc-Yh-wCa"/>
                                                 <constraint firstItem="Vfa-oV-Ds1" firstAttribute="top" secondItem="kh3-Lb-juM" secondAttribute="bottom" id="muT-bj-XK7"/>
                                                 <constraint firstItem="kh3-Lb-juM" firstAttribute="width" secondItem="iO3-1d-yGk" secondAttribute="width" id="p4x-U9-ipc"/>
-                                                <constraint firstItem="Vfa-oV-Ds1" firstAttribute="width" secondItem="gtS-Lm-Qbw" secondAttribute="width" id="vMe-dW-xy8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

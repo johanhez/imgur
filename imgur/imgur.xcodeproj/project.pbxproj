@@ -18,8 +18,21 @@
 		0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93D207CC91E00870742 /* ApiResponsable.swift */; };
 		0467F940207CC93100870742 /* ApiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467F93F207CC93100870742 /* ApiConnection.swift */; };
 		048D10F1207DD2F9007AF53C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D10F0207DD2F9007AF53C /* UIViewController.swift */; };
+		04DDF29C20888E8200EDCD04 /* imgurTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF29B20888E8200EDCD04 /* imgurTests.swift */; };
+		04DDF2A720888F4100EDCD04 /* PictureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF2A620888F4100EDCD04 /* PictureTest.swift */; };
+		04DDF2A9208893C900EDCD04 /* PictureCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDF2A8208893C900EDCD04 /* PictureCollection.swift */; };
 		04E40845207EE81E0065719D /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E40844207EE81E0065719D /* StringProtocol.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04DDF29E20888E8200EDCD04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0467F90D207CC0E500870742 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0467F914207CC0E500870742;
+			remoteInfo = imgur;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0467F915207CC0E600870742 /* imgur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imgur.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,11 +48,23 @@
 		0467F93D207CC91E00870742 /* ApiResponsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponsable.swift; sourceTree = "<group>"; };
 		0467F93F207CC93100870742 /* ApiConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnection.swift; sourceTree = "<group>"; };
 		048D10F0207DD2F9007AF53C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		04DDF29920888E8200EDCD04 /* imgurTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imgurTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DDF29B20888E8200EDCD04 /* imgurTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgurTests.swift; sourceTree = "<group>"; };
+		04DDF29D20888E8200EDCD04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04DDF2A620888F4100EDCD04 /* PictureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTest.swift; sourceTree = "<group>"; };
+		04DDF2A8208893C900EDCD04 /* PictureCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollection.swift; sourceTree = "<group>"; };
 		04E40844207EE81E0065719D /* StringProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0467F912207CC0E500870742 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DDF29620888E8200EDCD04 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				0467F917207CC0E600870742 /* imgur */,
+				04DDF29A20888E8200EDCD04 /* imgurTests */,
 				0467F916207CC0E600870742 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0467F915207CC0E600870742 /* imgur.app */,
+				04DDF29920888E8200EDCD04 /* imgurTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				0467F938207CC74000870742 /* Picture.swift */,
+				04DDF2A8208893C900EDCD04 /* PictureCollection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +178,40 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		04DDF29A20888E8200EDCD04 /* imgurTests */ = {
+			isa = PBXGroup;
+			children = (
+				04DDF2A320888EBF00EDCD04 /* Cases */,
+				04DDF2A420888EC800EDCD04 /* Data */,
+				04DDF29B20888E8200EDCD04 /* imgurTests.swift */,
+				04DDF2A520888ECF00EDCD04 /* SupportingFiles */,
+			);
+			path = imgurTests;
+			sourceTree = "<group>";
+		};
+		04DDF2A320888EBF00EDCD04 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				04DDF2A620888F4100EDCD04 /* PictureTest.swift */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		04DDF2A420888EC800EDCD04 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		04DDF2A520888ECF00EDCD04 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				04DDF29D20888E8200EDCD04 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,19 +232,42 @@
 			productReference = 0467F915207CC0E600870742 /* imgur.app */;
 			productType = "com.apple.product-type.application";
 		};
+		04DDF29820888E8200EDCD04 /* imgurTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04DDF2A220888E8200EDCD04 /* Build configuration list for PBXNativeTarget "imgurTests" */;
+			buildPhases = (
+				04DDF29520888E8200EDCD04 /* Sources */,
+				04DDF29620888E8200EDCD04 /* Frameworks */,
+				04DDF29720888E8200EDCD04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04DDF29F20888E8200EDCD04 /* PBXTargetDependency */,
+			);
+			name = imgurTests;
+			productName = imgurTests;
+			productReference = 04DDF29920888E8200EDCD04 /* imgurTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0467F90D207CC0E500870742 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Johan Hernandez";
 				TargetAttributes = {
 					0467F914207CC0E500870742 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					04DDF29820888E8200EDCD04 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0467F914207CC0E500870742;
 					};
 				};
 			};
@@ -200,6 +285,7 @@
 			projectRoot = "";
 			targets = (
 				0467F914207CC0E500870742 /* imgur */,
+				04DDF29820888E8200EDCD04 /* imgurTests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +298,13 @@
 				0467F923207CC0E600870742 /* LaunchScreen.storyboard in Resources */,
 				0467F920207CC0E600870742 /* Assets.xcassets in Resources */,
 				0467F91E207CC0E600870742 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04DDF29720888E8200EDCD04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,11 +323,29 @@
 				0467F937207CC6BA00870742 /* PicturesListViewController.swift in Sources */,
 				0467F93E207CC91E00870742 /* ApiResponsable.swift in Sources */,
 				0467F91B207CC0E600870742 /* ViewController.swift in Sources */,
+				04DDF2A9208893C900EDCD04 /* PictureCollection.swift in Sources */,
 				0467F919207CC0E600870742 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04DDF29520888E8200EDCD04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04DDF2A720888F4100EDCD04 /* PictureTest.swift in Sources */,
+				04DDF29C20888E8200EDCD04 /* imgurTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04DDF29F20888E8200EDCD04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0467F914207CC0E500870742 /* imgur */;
+			targetProxy = 04DDF29E20888E8200EDCD04 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0467F91C207CC0E600870742 /* Main.storyboard */ = {
@@ -397,6 +508,42 @@
 			};
 			name = Release;
 		};
+		04DDF2A020888E8200EDCD04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 99U67JRPA5;
+				INFOPLIST_FILE = imgurTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eyesilver.imgurTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/imgur.app/imgur";
+			};
+			name = Debug;
+		};
+		04DDF2A120888E8200EDCD04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 99U67JRPA5;
+				INFOPLIST_FILE = imgurTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eyesilver.imgurTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/imgur.app/imgur";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -414,6 +561,15 @@
 			buildConfigurations = (
 				0467F928207CC0E600870742 /* Debug */,
 				0467F929207CC0E600870742 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04DDF2A220888E8200EDCD04 /* Build configuration list for PBXNativeTarget "imgurTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04DDF2A020888E8200EDCD04 /* Debug */,
+				04DDF2A120888E8200EDCD04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -21,7 +21,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     @IBOutlet weak var even_results_switch: UISwitch!
     
     //--------Business logic variables--------
-    var pictures : Array<Picture> = []
+    var picture_collection : PictureCollection = PictureCollection()
     //--------General variables--------
     var api_routing : NSDictionary!
     var api_page : Int = 1
@@ -31,6 +31,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     //Api
     let api_connection = ApiConnection.shared//singleton object
     var cellHeightDictionary: NSMutableDictionary = NSMutableDictionary()
+    
     
     //MARK: - VIEW BEHAVIOR METHODS
     override func viewDidLoad() {
@@ -68,14 +69,13 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.pictures.count
+        return self.picture_collection.count
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Render row \(indexPath.row)")
         let  cell = self.pictures_tableview.dequeueReusableCell(withIdentifier: "picture_cell") as! PictureTableViewCell
         //get picture object to render
-        let picture : Picture = self.pictures[indexPath.row]
+        let picture : Picture = self.picture_collection.getElementAtIndex(index : indexPath.row)
         
         //get title for cell
         var cell_title_label = ""
@@ -150,7 +150,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             print("reload search")
             //when the user pull the scroll down reload info from the beginning
             self.api_page = 1
-            self.pictures.removeAll()
+            self.picture_collection.clearCollection()
             self.pictures_tableview.reloadData()
             self.searchPictures()
         }
@@ -195,7 +195,7 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
             self.showAlert(alert_view: self.alert_view, alert_message: "You must insert at least 3 characterers")
         }
         else{
-            self.pictures.removeAll()
+            self.picture_collection.clearCollection()
             self.pictures_tableview.reloadData()
             self.searchPictures()
         }
@@ -289,57 +289,10 @@ class PicturesListViewController: UIViewController,UITableViewDelegate, UITableV
         {
             //print("response: \(response["data"])")
             if let json_pictures = response["data"] as? Array<Dictionary<String, AnyObject>> {
-                for json_picture in json_pictures {
-                    //try to get first image from list or main image from post
-                    var image_url : String? = nil
-                    var number_of_pictures : Int16 = 1
-                    if  let images = json_picture["images"] as? Array<Dictionary<String, AnyObject>>,
-                        images.count > 0 {
-                        let first_image = images.first
-                        if let link_first_image = first_image!["link"] as? String {
-                            image_url = link_first_image
-                            number_of_pictures = Int16(images.count)
-                        }
-                    }
-                    else if let link = json_picture["link"] as? String{
-                        image_url = link
-                    }
-                    if image_url != nil {
-                        let picture = Picture()
-                        if let title = json_picture["title"] as? String {
-                            picture.title = title.firstUppercased
-                        }
-                        picture.number_images = number_of_pictures
-                        if let datetime = json_picture["datetime"] as? Double {
-                            picture.post_date = NSDate(timeIntervalSince1970: datetime)
-                        }
-                        picture.image_url = image_url
-                        var include_in_list = true
-                        //If toggle is enabled, the app should only display results where the sum of “points”, “score” and “topic_id” adds up to an even number
-                        if self.even_results_switch.isOn == true {
-                            var points : Int = 0
-                            var score : Int = 0
-                            var topic_id : Int = 0
-                            if let json_points = json_picture["points"] as? Int {
-                                points = json_points
-                            }
-                            if let json_score = json_picture["score"] as? Int {
-                                score = json_score
-                            }
-                            if let json_topic_id = json_picture["topic_id"] as? Int {
-                                topic_id = json_topic_id
-                            }
-                            let features_sum = points+score+topic_id
-                            if (features_sum % 2) != 0 {
-                                include_in_list = false
-                            }
-                        }
-                        if include_in_list == true {
-                            self.pictures.append(picture)
-                        }
-                    }
-                }
-                if self.pictures.count == 0 {
+                self.picture_collection._toggle_filter_is_on = self.even_results_switch.isOn
+                self.picture_collection.createCollectionFromJsonArray(json_pictures: json_pictures)
+                
+                if self.picture_collection.count == 0 {
                     self.showAlert(alert_view: self.alert_view, alert_message: "There are no results. Please try with a different keyword")
                 }
                 else if self.api_page > 1 && json_pictures.count == 0 {
